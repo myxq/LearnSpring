@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dog" class="com.chinasofti.model.Dog"
+          lazy-init="false" init-method="init" destroy-method="destroy">
+        <constructor-arg index="0" value="田园犬"></constructor-arg>
+        <constructor-arg index="1" value="3"></constructor-arg>
+    </bean>
+    <bean id="dog1" class="com.chinasofti.model.Dog"
+          lazy-init="false" init-method="init" destroy-method="destroy">
+        <constructor-arg index="0" value="藏獒"></constructor-arg>
+        <constructor-arg index="1" value="3"></constructor-arg>
+    </bean>
+    <bean id="dog2" class="com.chinasofti.model.Dog"
+          lazy-init="false" init-method="init" destroy-method="destroy">
+        <constructor-arg index="0" value="京巴"></constructor-arg>
+        <constructor-arg index="1" value="3"></constructor-arg>
+    </bean>
+
+    <bean id="boy" class="com.chinasofti.model.Boy" autowire="byName">
+        <property name="name" value="杨洋"/>
+        <!--<property name="dog" ref="dog1" />-->
+        <property name="fer">
+            <list>
+                <value type="java.lang.String">篮球</value>
+                <value type="java.lang.String">踢足球</value>
+                <value type="java.lang.String">踢足球</value>
+            </list>
+        </property>
+        <property name="books">
+            <set>
+                <value type="java.lang.String">《呐喊》</value>
+                <value type="java.lang.String">《彷徨》</value>
+                <value type="java.lang.String">《故事新编》</value>
+            </set>
+        </property>
+        <property name="scores">
+            <map>
+                <entry key="语文" value="80"/>
+                <entry key="数学" value="95"/>
+
+            </map>
+        </property>
+        <property name="dog" ref="dog1"/>
+
+    </bean>
+
+<!--    <bean id="product" class="com.chinasofti.model.StaticFactory" factory-method="getProduct"></bean>-->
+
+
+    <bean id="car" class="com.chinasofti.model.CarStaticFactory"
+          factory-method="getCar">
+        <constructor-arg value="宝马"/>
+    </bean>
+
+    <bean id="customFactory" class="com.chinasofti.model.CustomFactory">
+
+    </bean>
+    <bean id="product" factory-bean="customFactory" factory-method="getProduct">
+
+    </bean>
+</beans>

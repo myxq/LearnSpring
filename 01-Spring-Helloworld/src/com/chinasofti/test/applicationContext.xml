@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dog2" class="com.chinasofti.model.Dog">
+        <constructor-arg index="0" value="京巴"></constructor-arg>
+        <constructor-arg index="1" value="3"></constructor-arg>
+    </bean>
+
+<!--    <bean id="product" class="com.chinasofti.model.StaticFactory" factory-method="getProduct"></bean>-->
+
+
+    <bean id="car" class="com.chinasofti.model.CarStaticFactory"
+          factory-method="getCar">
+        <constructor-arg value="宝马"/>
+    </bean>
+
+    <bean id="customFactory" class="com.chinasofti.model.CustomFactory">
+
+    </bean>
+    <bean id="product" factory-bean="customFactory" factory-method="getProduct">
+
+    </bean>
+</beans>
